@@ -26,8 +26,6 @@ GiphyAJAXCall.addEventListener('load',(e) => {
   const parsedData = JSON.parse(rawData);
   pushToDOM(parsedData); 
 });
-
-
 };
 
 // 3. GIF파일들을 index.html에 밀어 넣는다.
