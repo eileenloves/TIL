@@ -29,10 +29,10 @@ if(app.get('env') === 'development') {
 
 app.use(express.json()); //body에 있는 애들을 parsing해주는 함수
 app.use(express.urlencoded({extended:true}));
-app.use(express.static('public'));  //static file(image 등)을 serving해줌
+// app.use(express.static('public'));  //static file(image 등)을 serving해줌
 app.use(logger); //그 안의 함수를 실행하고자 하는 것이 아니므로 logger()가 아님
 app.use(auth); 
-app.use('./api/movies',movies);
+app.use('/api/movies',movies);
 app.use(home);
 
 app.set('view engine','pug');

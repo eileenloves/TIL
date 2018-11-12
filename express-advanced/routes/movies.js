@@ -9,7 +9,7 @@ const movies = [
 ];
 
 /* GET /api/movies */
-router.get('', (req, res) => {
+router.get('/', (req, res) => {
   res.send(movies);
 });
 
@@ -21,7 +21,7 @@ router.get('/:id', (req, res) => {
 });
 
 /* POST /api/movies */
-router.post('', (req, res) => {
+router.post('/', (req, res) => {
   const { error } = validateMovie(req.body)
 
   if (error) return res.status(400).send(error.message);
