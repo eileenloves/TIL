@@ -1,8 +1,8 @@
-const Joi = require('joi');
+const Joi = require('joi'); //varidate를 실행하기 위한 class
 const express = require('express');
 const app = express();
 
-app.use(express.json());
+app.use(express.json()); // express.json (미들웨어 함수), json을 parsing해주어 object처럼 쓸 수 있게 해줌
 
 const movies = [
   {id:1, title: 'LaLaland'},
