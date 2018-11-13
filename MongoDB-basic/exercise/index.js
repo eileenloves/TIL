@@ -38,9 +38,9 @@ mongoose.connect('mongodb://localhost/exercise-basic', { useNewUrlParser:true })
   async function getEx3(){
     const courses = await Course
     .find()
-    .or([{ price: { $gt:15}}, {name: /.*js.*/i }])
+    .or([{ price: { $gte:15}}, {name: /.*js.*/i }])
     .select({tags:0})
-    
+
     console.log(courses);
   }
 
