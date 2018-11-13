@@ -19,15 +19,58 @@ const Course = mongoose.model('Course',courseSchema);
 
 // table = collection 
 // record,row = document
-// CRUD
-const course = new Course({
-  name: '실전 dApp 빌드',
-  author: 'Da Eun Kim',
-  tags: ['Ethereum','Hyperledger'],
-  isPublished: false
-});
 
-course.save()
-  .then(result=>console.log(result))
-  .catch(error=>console.error(error.message));
+/* CRUD Operation */
+async function createCourse(){
+  const course = new Course({
+    name: '실전 dApp 빌드',
+    author: 'Da Eun Kim',
+    tags: ['Ethereum','Hyperledger'],
+    isPublished: false
+  });
 
+  try{
+    const result = await course.save();
+    console.log(result);
+  }catch(error){
+    console.error(error.message);
+  }
+    
+}
+
+async function getCourses(){
+  const courses = await Course
+  // .find({ price: { $lt:15, $gt:10}})
+  // .find({ price: { $in: [10, 15]}})
+  // .find({isPublished:true})
+  // .limit(10)
+  // .sort({name:-1})
+  // .select({ name:1, tags:1})
+  // .find({ author: /^ne/i })
+  // .find({ author: /hn$/ })
+  // .find({ author: /.*oh.*/ })
+  // .count()
+  console.log(courses);
+}
+/* 비교 쿼리 연산자
+  Seq (equal)
+  $neq (not equal)
+  $gt (greater than)
+  $gte (greater than or equal to)
+  $lt (less than)
+  $lte
+  $in
+  $nin
+*/
+
+/* 논리 쿼리 연산자
+.or
+  Course.find()
+    .or([{ author: 'neo'}, { isPublished:false}]
+
+.and
+  Course.find()
+    .and([{ author: 'neo'}, { isPublished:false}]
+*/
+
+getCourses();
