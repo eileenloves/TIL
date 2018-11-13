@@ -1,0 +1,22 @@
+{
+  "name": "til_demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eileenloves/TIL.git"
+  },
+  "author": "Da Eun Kim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eileenloves/TIL/issues"
+  },
+  "homepage": "https://github.com/eileenloves/TIL#readme",
+  "dependencies": {
+    "mongoose": "^5.3.11"
+  }
+}
