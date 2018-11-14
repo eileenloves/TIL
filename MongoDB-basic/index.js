@@ -6,11 +6,25 @@ mongoose.connect('mongodb://localhost/hello-mongo', { useNewUrlParser:true })
   .catch(error=>console.error(error.message));
 
 // 몽구스에서 스키마 기능을 제공 (몽고디비에는 스키마 존재 X)
-// Available schema Datatypes : String, Number, Date, Buffer, Boolean, ObjectID, Array
+// Available schema Datatypes: String, Number, Date, Buffer, Boolean, ObjectID, Array
+// Available Validating Options:
+// String: maxlength, minlength, match, enum
+// Numbers, Dates: min, max
+// All: required
 const courseSchema = new mongoose.Schema({
-  name: String,
+  name: {type:String,required:true,minlength:2},
   author: String,
-  tags: [ String ],
+  tags: {
+    type:Array,
+    // custom validator
+    validate: {
+      validator: function(tags) { 
+        const result = tags.every(tag=>tag.length>0)
+        return tags && tags.length > 0 && result;
+      },
+      message: 'A Course should have at least 1 tag'
+    }
+  },
   date: { type:Date, default: Date.now },
   isPublished: Boolean
 });
@@ -25,13 +39,14 @@ const Course = mongoose.model('Course',courseSchema);
   /* Create */
 async function createCourse(){
   const course = new Course({
-    name: '실전 dApp 빌드',
-    author: 'Da Eun Kim',
-    tags: ['Ethereum','Hyperledger'],
-    isPublished: false
+    name: "aa",
+    author: 'JS',
+    tags: ['a'],
+    isPublished: true
   });
 
   try{
+    // const result = await course.validate();
     const result = await course.save();
     console.log(result);
   }catch(error){
@@ -40,6 +55,11 @@ async function createCourse(){
     
 }
 
+<<<<<<< HEAD
+=======
+createCourse();
+
+>>>>>>> mongodb-basic
   /* Retrieve */
 async function getCourses(){
   const courses = await Course
@@ -53,9 +73,14 @@ async function getCourses(){
 // 1. Query First: find => change => save
 async function updateCourse(id){
   // Find
+<<<<<<< HEAD
   const course = awaitCourse.findById(id)
   if(!course) return;
 
+=======
+  const course = await Course.findById(id)
+  if(!course) return;
+>>>>>>> mongodb-basic
   // Change
   course.author = 'Eileen';
   course.tags = ['IBMer'];
@@ -65,12 +90,37 @@ async function updateCourse(id){
  console.log(result);
 }
 
+<<<<<<< HEAD
 updateCourse();
 
 // 2. Update First: 직접 update => result
 
 
 
+=======
+// updateCourse('5beb6f22db30fb26012bf234');
+
+// 2. Update First: 직접 update => result
+async function updateCourses(){
+  const result = await Course.updateMany({isPublished:true},{
+    $set: {
+      author: 'Dimitri',
+    }
+  })
+  console.log(result);
+}
+
+// updateCourses();
+
+/* Delete */
+async function deleteCourses(id){
+  const result = await Course.deleteOne({_id:id});
+  // const result = await Course.findOneAndDelete
+  console.log(result);
+}
+
+// deleteCourses('5beb6f22db30fb26012bf234');
+>>>>>>> mongodb-basic
 
 // Example
 // async function getCourses(){
@@ -103,7 +153,6 @@ updateCourse();
 .or
   Course.find()
     .or([{ author: 'neo'}, { isPublished:false}]
-
 .and
   Course.find()
     .and([{ author: 'neo'}, { isPublished:false}]
