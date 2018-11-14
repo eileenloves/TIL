@@ -36,11 +36,26 @@ async function createAuthor(name,github) {
   }
 }
 
-async function createCourse(name,github) {
-  const course= new Course({name,github});
-  const result = await course.save();
-  console.log(result);
+async function createCourse(name,author) {
+  const course= new Course({name,author});
+  try{
+    const result = await course.save();
+    console.log(result);
+  }catch(error){
+    console.error(error.message);
+  } 
 }
 
-createAuthor('Eileen','eileenloves');
-// createCourse();
+// createAuthor('Eileen','eileenloves');
+// const id = mongoose.Types.ObjectId('5beba19a6ff14b28112fdc6b')
+// createCourse('React',id);
+
+async function listCourses() {
+  const courses = await Course
+    .find()
+    .populate('author')
+    .select('name');
+
+  console.log(courses);
+}
+listCourses();
