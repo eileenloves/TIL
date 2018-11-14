@@ -11,7 +11,7 @@ const authorSchema = new mongoose.Schema({
 
 const courseSchema = new mongoose.Schema({
   name: String,
-  author: [authorSchema]
+  author: [authorSchema]   //1:다 관계를 위해
 });
 
 // Schema Creation

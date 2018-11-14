@@ -55,11 +55,9 @@ async function createCourse(){
     
 }
 
-<<<<<<< HEAD
-=======
 createCourse();
 
->>>>>>> mongodb-basic
+
   /* Retrieve */
 async function getCourses(){
   const courses = await Course
@@ -73,14 +71,8 @@ async function getCourses(){
 // 1. Query First: find => change => save
 async function updateCourse(id){
   // Find
-<<<<<<< HEAD
-  const course = awaitCourse.findById(id)
-  if(!course) return;
-
-=======
   const course = await Course.findById(id)
   if(!course) return;
->>>>>>> mongodb-basic
   // Change
   course.author = 'Eileen';
   course.tags = ['IBMer'];
@@ -90,14 +82,6 @@ async function updateCourse(id){
  console.log(result);
 }
 
-<<<<<<< HEAD
-updateCourse();
-
-// 2. Update First: 직접 update => result
-
-
-
-=======
 // updateCourse('5beb6f22db30fb26012bf234');
 
 // 2. Update First: 직접 update => result
@@ -120,7 +104,7 @@ async function deleteCourses(id){
 }
 
 // deleteCourses('5beb6f22db30fb26012bf234');
->>>>>>> mongodb-basic
+
 
 // Example
 // async function getCourses(){
