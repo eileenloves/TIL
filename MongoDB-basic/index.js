@@ -21,6 +21,8 @@ const Course = mongoose.model('Course',courseSchema);
 // record,row = document
 
 /* CRUD Operation */
+
+  /* Create */
 async function createCourse(){
   const course = new Course({
     name: '실전 dApp 빌드',
@@ -38,20 +40,54 @@ async function createCourse(){
     
 }
 
+  /* Retrieve */
 async function getCourses(){
   const courses = await Course
+  .find({ price: { $lt:15, $gt:10}})
+  console.log(courses);
+}
+// getCourses();
+
+
+/* Update */
+// 1. Query First: find => change => save
+async function updateCourse(id){
+  // Find
+  const course = awaitCourse.findById(id)
+  if(!course) return;
+
+  // Change
+  course.author = 'Eileen';
+  course.tags = ['IBMer'];
+
+  // Save
+ const result = await course.save();
+ console.log(result);
+}
+
+updateCourse();
+
+// 2. Update First: 직접 update => result
+
+
+
+
+// Example
+// async function getCourses(){
+//   const courses = await Course
   // .find({ price: { $lt:15, $gt:10}})
   // .find({ price: { $in: [10, 15]}})
   // .find({isPublished:true})
   // .limit(10)
   // .sort({name:-1})
   // .select({ name:1, tags:1})
+  // .select('name tags')
   // .find({ author: /^ne/i })
   // .find({ author: /hn$/ })
   // .find({ author: /.*oh.*/ })
   // .count()
-  console.log(courses);
-}
+  // console.log(courses);
+// }
 /* 비교 쿼리 연산자
   Seq (equal)
   $neq (not equal)
@@ -73,4 +109,4 @@ async function getCourses(){
     .and([{ author: 'neo'}, { isPublished:false}]
 */
 
-getCourses();
+// getCourses();

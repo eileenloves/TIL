@@ -4,6 +4,7 @@ mongoose.connect('mongodb://localhost/exercise-basic', { useNewUrlParser:true })
   .then(()=>{console.log('Connected to MongoDB!')})
   .catch(error=>console.error(error.message));
 
+  // Schema = blueprint
   const courseSchema = new mongoose.Schema({
     name: String,
     author: String,
