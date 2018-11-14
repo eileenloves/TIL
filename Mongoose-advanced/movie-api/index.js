@@ -1,4 +1,4 @@
-// const genres = require('./routes/genres')
+const genres = require('./routes/genres')
 const movies = require('./routes/movies')
 const mongoose = require('mongoose');
 const express = require('express');
@@ -11,7 +11,7 @@ mongoose.connect('mongodb://localhost/video-api',{useNewUrlParser:true})
 
   /* Middlewares */
 app.use(express.json());
-// app.use('/api/genres',genres);
+app.use('/api/genres',genres);
 app.use('/api/movies',movies);
 
   /* Models */
